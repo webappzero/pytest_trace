@@ -1,0 +1,71 @@
+#!/bin/bash
+
+cd $HOME/projects
+
+mkdir pytest_trace_workspace
+
+# Using curl -L means follow redirect. Needed to follow goo.gl short link.
+curl -L http://goo.gl/hRmoex > setup.py
+
+# General python gitignore stuff
+curl -L http://goo.gl/IIOxgs > .gitignore
+
+# Package level gitignore for web2py stuff
+curl -L http://goo.gl/TYU9gW >> .gitignore
+
+touch LICENSE
+
+touch README.md
+
+git init
+
+git add .
+
+mkdir tracepkg
+
+cd tracepkg
+
+touch main.py
+
+touch __init__.py
+
+mkdir dir1
+
+touch dir1/__init__.py
+
+mkdir dir2
+
+touch dir2/__init__.py
+
+mkdir dir3
+
+touch dir3/__init__.py
+
+mkdir test/bdd
+
+mkdir test/unit
+
+touch test/conftest.py
+
+# Edit setup.py with relevant settings for this directory structure
+
+cd ..
+
+sudo pip install -e .  # as per http://goo.gl/R0pc5s
+
+# Edit main.py with basic Click entry point such that running 'trace' from
+# bash prompt will return success string. This confirms that the tracepkg
+# is importable and in pythonpath. look for: 'You called the cli function in
+# main.py in tracepkg'.
+trace
+
+
+
+
+
+#####################
+# learning resources:
+# http://developer.paylogic.com/articles/how-we-use-pytest-and-pytest-bdd-in-paylogic.html
+
+
+
