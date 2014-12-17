@@ -4,6 +4,15 @@ cd $HOME/projects
 
 mkdir pytest_trace_workspace
 
+# given a python setup on os x like this: http://goo.gl/y8J4n1
+virtualenv --python=/opt/local/bin/python2.7 venv
+
+source env/bin/activate
+
+pip install pytest
+
+pip install pytest-bdd
+
 # Using curl -L means follow redirect. Needed to follow goo.gl short link.
 curl -L http://goo.gl/hRmoex > setup.py
 
@@ -17,9 +26,19 @@ touch LICENSE
 
 touch README.md
 
+# create new github repo named pytest_trace as per: http://goo.gl/aw1u3V
+
 git init
 
 git add .
+
+git commit -m 'First commit'
+
+git remote add origin https://github.com/jaymartin7/pytest_trace.git
+
+git remote -v    # verify remote repo exists
+
+git push origin master
 
 mkdir tracepkg
 
@@ -45,6 +64,8 @@ mkdir test/bdd
 
 mkdir test/unit
 
+mkdir test/fixtures
+
 touch test/conftest.py
 
 # Edit setup.py with relevant settings for this directory structure
@@ -58,6 +79,12 @@ sudo pip install -e .  # as per http://goo.gl/R0pc5s
 # is importable and in pythonpath. look for: 'You called the cli function in
 # main.py in tracepkg'.
 trace
+
+touch features/feature1.feature
+
+# populate feature1 with a feature
+
+
 
 
 
